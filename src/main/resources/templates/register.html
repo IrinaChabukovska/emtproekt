@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+</head>
+<body>
+    <h1>Register here</h1>
+    <form action="/register" th:object="${user}" method="POST"
+          enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                    <input type="text" name="first_name" id="first_name"
+                           class="form-control input-sm" placeholder="First Name"
+                           th:value="${user.getFirstName()}" th:field="*{firstName}" />
+                    <h4 class="text-danger"
+                        th:if="${#fields.hasErrors('firstName')}"
+                        th:errors="*{firstName}">
+
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                    <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name"
+                           th:value="${user.getLastName()}" th:field="*{lastName}" />
+                    <h4 class="text-danger"
+                        th:if="${#fields.hasErrors('lastName')}"
+                        th:errors="*{lastName}">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address"
+                   th:value="${user.getEmail()}" th:field="*{email}" />
+            <h4 class="text-danger"
+                th:if="${#fields.hasErrors('email')}"
+                th:errors="*{email}">
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                    <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password"
+                           th:value="${user.getPassword()}" th:field="*{password}" />
+                    <h4 class="text-danger"
+                        th:if="${#fields.hasErrors('password')}"
+                        th:errors="*{password}">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+
+    </form>
+</body>
+</html>
